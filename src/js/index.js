@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './css/App.css';
-import App from './js/App';
-import * as serviceWorker from './serviceWorker';
+import '../css/App.css';
+import App from './App';
+import * as serviceWorker from '../serviceWorker';
 
 let data;
 

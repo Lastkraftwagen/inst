@@ -1,0 +1,32 @@
+.App{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+input{
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+
+*{
+box-sizing: border-box;
+}
+
+body{
+  overflow-y: scroll;
+
+}
+
+.main{
+  margin-top:77px;
+  background-color: aqua;
+}
+
+/* @keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
