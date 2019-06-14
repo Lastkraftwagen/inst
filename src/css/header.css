@@ -19,6 +19,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 26px 20px;
+  height: 77px;
+
 }
 
 .logo {
@@ -27,6 +29,7 @@
   align-items: center;
   justify-content: flex-start;
   flex: 1 9999 0%;
+  height: 36px;
 }
 
 .with_img {
@@ -40,8 +43,8 @@
 }
 
 .logo_img {
-  width: 25px;
-  height: 25px;
+  width: 24px;
+  height: 24px;
   background-position: -52px -234px;
 }
 
@@ -56,6 +59,7 @@
   height: 29px;
   width: 103px;
   background-position: -94px -72px;
+  align-self: flex-end
 }
 
 .search_pic {
