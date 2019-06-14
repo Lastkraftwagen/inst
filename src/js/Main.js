@@ -10,13 +10,24 @@ class Main extends React.Component {
       items: []
     }
   }
+
   componentDidMount = async () => {
     const arr = await Data();
     this.setState({items: arr});
+
+  }
+  
+  sortItems = () =>{
+    this.state.items.sort((a,b)=>{
+      return new Date(b.createdAt) - new Date(a.createdAt);
+    })
   }
 
   render() {
     const {items} = this.state;
+    
+    this.sortItems();
+
     return (
       
       <div className='main'>

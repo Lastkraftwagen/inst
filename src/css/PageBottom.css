@@ -1,0 +1,94 @@
+.comments_block{
+  display: flex;
+  flex-direction: column;
+}
+
+.like_panel{
+  height: 40px;
+  padding-left: 8px; 
+  padding-right: 8px; 
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.like_panel span{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  min-width: 40px;
+}
+
+.like_panel span:last-child{
+  margin-left: auto;
+}
+
+.heart{
+  height: 24px;
+  width: 24px;
+  background-position: -52px -260px;
+}
+
+.comment{
+  height: 24px;
+  width: 24px;
+  background-position: -239px -202px;
+}
+
+.share{
+  height: 24px;
+  width: 24px;
+  background-position: -323px -52px;
+}
+
+.save{
+  height: 24px;
+  width: 24px;
+  background-position: -234px -286px;
+}
+
+
+
+
+.likes_counter{
+  height: 18px;
+  padding-left: 16px; 
+  padding-right: 16px; 
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.likes_counter p{
+  font-weight: 600;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  color: #262626;
+}
+
+.post_descr{
+  height: 29px;
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 6px;
+  padding-bottom: 5px;
+}
+
+.post_descr h2{
+  color: #262626;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+  margin-right: 4px;
+
+}
+
+.post_descr p{
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+}

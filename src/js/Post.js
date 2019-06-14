@@ -1,30 +1,30 @@
 import React from 'react';
+import PageBottom from '../js/PageBottom'
+
 import '../css/Post.css';
 import trash from '../assets/img/trash.png'
 class Post extends React.Component {
-  constructor(props) {
-    super(props);
-    // this.state = {
-    //   elements: []
-    // }
-  }
 
   getRandomPic = ()=>{
-    return `https://picsum.photos/id/${Math.floor(Math.random() * 200)}/600/600`;
+    return `https://picsum.photos/id/${Math.floor(Math.random() * 200)}/600/${Math.floor(Math.random() * 200)+300}`;
   }
 
   render(){
-    console.log(this.props.elements);
+    const { 
+      createdAt,  
+      imageUrl, 
+      avatar, 
+      userName, 
+      comments,
+      likes,
+      description} = this.props.elements;
     
-
-
-    const { createdAt,  imageUrl, avatar, userName} = this.props.elements;
     return(
         <div className="post">
           <div className="post_topblock">
             <div className="group_title">
               <img src = {avatar}></img>
-              <p>{userName}</p>
+              <p>{userName} </p>
             </div>
             <div></div>
             <img className='trash' src = {trash}></img>
@@ -32,7 +32,12 @@ class Post extends React.Component {
           <div className="content">
             <img src = {this.getRandomPic()}></img>
           </div>
-          {/* <Comments></Comments> */}
+          <PageBottom 
+          className="comments_plock" 
+          comments={comments} 
+          likes = {likes}
+          userName = {userName}
+          description = {description}> </PageBottom> 
         </div>
     );
   }

@@ -1,0 +1,17 @@
+.with_img {
+  background-repeat: no-repeat;
+  background-image: url(../assets/img/all.png);
+  cursor: pointer;
+}
+
+.with_ico {
+  background-repeat: no-repeat;
+  background-image: url(../assets/img/all1.png);
+  cursor: pointer;
+
+}
+
+button{
+  background: 0 0;
+  border: 0;
+}
