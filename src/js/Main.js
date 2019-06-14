@@ -18,12 +18,15 @@ class Main extends React.Component {
   render() {
     const {items} = this.state;
     return (
+      
       <div className='main'>
-        {
-          items.map((element) => (
-          <Post key = {element.id} elements={element}>
-          </Post>))
-        }
+        <div className="posts_holder">
+          {
+            items.map((element) => (
+            <Post key = {element.id} elements={element}>
+            </Post>))
+          }
+        </div>
       </div>
     );
   }
