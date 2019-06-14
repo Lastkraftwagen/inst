@@ -9,6 +9,9 @@ class Post extends React.Component {
     // }
   }
 
+  getRandomPic = ()=>{
+    return `https://picsum.photos/id/${Math.floor(Math.random() * 200)}/600/600`;
+  }
 
   render(){
     console.log(this.props.elements);
@@ -27,7 +30,7 @@ class Post extends React.Component {
             <img className='trash' src = {trash}></img>
           </div>
           <div className="content">
-            <img src = {imageUrl}></img>
+            <img src = {this.getRandomPic()}></img>
           </div>
           {/* <Comments></Comments> */}
         </div>
