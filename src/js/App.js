@@ -8,10 +8,9 @@ function App() {
   return (
     <div className="App">
     <Header className='header_cont'/>
-    <Main className="main"> </Main>
-      <p>
-        Edit <code>src/App.js</code> and save to reload.
-      </p>
+    <Main className="main"> 
+    
+    </Main>
     </div>
   );
   }
