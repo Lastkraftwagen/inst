@@ -1,12 +1,10 @@
-import React, { Component } from 'react';
-
 // class Data extends Component {
 //   constructor(props) {
 //     super(props);
 //     this.state = {
 //       error: null,
 //       isLoaded: false,
-//       items: Array
+//       items: []
 //     }
 //   }
 //   componentDidMount() {
@@ -34,9 +32,8 @@ import React, { Component } from 'react';
 //         (<h1>error</h1>)
 //     );
 //   }
-//}
-
-const Data = {data: []};
+// }
+// const Data = {data: []};
 
 const Data = async () => {
   try {
@@ -44,7 +41,7 @@ const Data = async () => {
       method: 'GET'
     })
     if (response) {
-      return await response.json();
+      return response.json();
     }
   } catch (error) {
     console.log({ error });
