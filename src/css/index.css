@@ -15,3 +15,7 @@ button{
   background: 0 0;
   border: 0;
 }
+
+.hidden{
+  display: none;
+}

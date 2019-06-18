@@ -1,32 +1,123 @@
 import React from 'react';
 import '../css/AddingModal.css';
+import avatar from '../assets/img/avatar.png'
 
 
 class ModalAdd extends React.Component {
 
   modalRef = null;
+  myFormRef = null;
 
+  state = {
+    userName: 'yar_ki',
+    file: '',
+    fileURL: '',
+    descr: ''
+  }
 
   handleClick = (event) => {
-    console.log(this.modalRef);
-    
     if (this.modalRef !== null && !this.modalRef.contains(event.target))
       this.props.close();
   }
 
+  handleFiles = (e) => {
+    let reader = new FileReader();
+    let file = e.target.files[0];
+
+    if (!file.type.startsWith('image/')) {
+      alert('Виберіть картинку будь ласка!');
+      this.setState({
+        file: "",
+        fileURL: ""
+      });
+      this.myFormRef !== null ?
+        this.myFormRef.reset() : console.log("myFormRef = null");
+      return;
+    }
+    reader.onloadend = () => {
+      this.setState({
+        file: file,
+        fileURL: reader.result
+      });
+    }
+
+    reader.readAsDataURL(file);
+  }
+
+  handleChange = (e) => {
+    this.setState({ descr: e.target.value });
+  }
+
+  saveChanges = (e) => {
+    let item = {
+      imageUrl: this.state.fileURL,
+      likes: 0,
+      userName: "yar_ki",
+      avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/louis_currie/128.jpg",
+      description: this.state.descr,
+      comments: []
+    }
+
+    // let item = {
+    //   "imageUrl": "http://lorempixel.com/640/480/transport",
+    //   "likes": 51090,
+    //   "userName": "Антон Васильович",
+    //   "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/sterlingrules/128.jpg",
+    //   "description": "Cambridgeshire parsing",
+    //   "comments": ["Тікай з села!!!", "Неймовірно", "Класс"]
+    // }
+    this.props.apply(item);
+    this.props.close();
+  }
+
   render() {
-    console.log('here');
+    const { userName } = this.state;
+    let { fileURL } = this.state;
+    let image;
+    if (fileURL) {
+      image = (<img className='actual_img' src={fileURL} />);
+    } else {
+      image = (<div className="prev_img">IMAGE</div>);
+    }
 
     return (
       <div className="modal" onClick={this.handleClick} >
         <div
-          className="modal-content"
+          className="modal_content"
           ref={param => this.modalRef = param}
         >
-          <span className="close" onClick={this.props.close}>&times;</span>
-          <p>вщdfvfdvdfvdfvdfvdfvслвлсвщлсщвсвщслв</p>
-        </div>  
-      </div>
+          <div className='topdiv_add'>
+            <div>
+              <img className='avatar' src={avatar}></img>
+              <p className='name'>{userName}</p>
+            </div>
+            <div></div>
+            <span className="close" onClick={this.props.close}>
+              &times;
+            </span>
+          </div>
+          <div className='edit_page'>
+            <form ref={el => this.myFormRef = el}>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={this.handleFiles}
+              />
+            </form>
+            {image}
+            <div className="down_descr">
+              <textarea
+                onChange={this.handleChange}
+                placeholder="Введіть тут опис картинки"
+              />
+              <span className="add" onClick={this.saveChanges}>
+                &#10004;
+            </span>
+            </div>
+          </div>
+
+        </div>
+      </div >
     )
   }
 }

@@ -12,17 +12,38 @@ const DataLoad = async () => {
 }
 
 const DataDelete = (id) => {
-  let Url = 'https://5b27755162e42b0014915662.mockapi.io/api/v1/posts'+`/${id}`;
+  let Url = `https://5b27755162e42b0014915662.mockapi.io/api/v1/posts/${id}`;
   return fetch(Url, {
-      method: 'DELETE'
+    method: 'DELETE'
   })
-  .then(res => res.json());
+    .then(res => res.json());
 };
 
+const DataSend = (element) => {
+  // console.log(JSON.stringify(element));
+  return fetch("https://5b27755162e42b0014915662.mockapi.io/api/v1/posts",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "User-Agent": "PostmanRuntime/7.15.0",
+        "Accept": "*/*",
+        "Cache-Control": "no-cache",
+        "Host": "5b27755162e42b0014915662.mockapi.io",
+        "accept-encoding": "gzip, deflate",
+        "content-length": "62156",
+        "Connection": "keep-alive",
+        "cache-control": "no-cache"
+      },
+      body: JSON.stringify(element)
+    }).then(res => res.json());
+}
 
-export {DataDelete};
-  
-export {DataLoad};
+export { DataSend };
+
+export { DataDelete };
+
+export { DataLoad };
 
 
 // class Data extends Component {
