@@ -1,28 +1,32 @@
 import React from 'react';
 import '../css/index.css'
-import '../css/PageBottom.css';
-import Comments from './Comments'
 
-
-class PageBottom extends React.Component {
+class Comments extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      comments: [],
-      likes: 0
+      comments: this.props.comments
     }
-  }
+    
+  } 
 
   render() {
+    const { comments } = this.state;
+    let i = 0;
+    if (comments === undefined) {
+      return (
+        <ul></ul>
+      );
+    }
     return (
       <ul className="ul_comments">
-        <li>cdkcld</li>
-        <li>dcdc</li>
-      </ul>
+        {[...comments].map((element) => (
+      <li key={++i}>{element}</li>))}
+    </ul>
     );
   }
 
 }
 
 
-export default PageBottom;
+export default Comments;

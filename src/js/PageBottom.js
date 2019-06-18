@@ -5,45 +5,84 @@ import Comments from './Comments'
 
 
 class PageBottom extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      comments: [],
-      likes: 0
+
+  state = {
+    comments: [],
+    likes: 0,
+    liked: false
+  }
+
+  commentsStyle = () => {
+    return {
+      display: this.props.comments === undefined ?
+        'none' : 'flex'
     }
   }
 
+  componentDidMount = () => {
+    this.setState({ comments: this.props.comments });
+    this.setState({ likes: this.props.likes });
+  }
+
+  addLike = () => {
+    const { liked } = this.state;
+    if (liked === false) {
+      this.setState({ likes: this.state.likes + 1 })
+    }
+    else {
+      this.setState({ likes: this.state.likes - 1 })
+    }
+    this.setState({ liked: !this.state.liked })
+
+  }
+
+  getHeartClass = () => {
+    return this.state.liked ? "with_img heart_red" : "with_img heart";
+  }
+
   render() {
+    const {
+      comments,
+      userName,
+      description
+    } = this.props;
+
+    const {
+      likes,
+    } = this.state;
+
     return (
       <div className="comments_block">
         <div className="like_panel">
           <span>
-            <button className="with_img heart"></button>
+            <button
+              onClick={this.addLike}
+              className={this.getHeartClass()}>
+            </button>
           </span>
           <span>
             <button className="with_img comment"></button>
-          </span>  
+          </span>
           <span>
             <button className="with_img share"></button>
-          </span>  
+          </span>
           <span>
             <button className="with_img save"></button>
           </span>
         </div>
         <div className="likes_counter">
           <p>
-          {this.props.likes} отметок "Нравится"
+            {likes} отметок "Нравится"
           </p>
         </div>
         <div className="post_descr">
-          <h2> {this.props.userName}</h2>
-          <p> {this.props.description}</p>
+          <h2> {userName}</h2>
+          <p> {description}</p>
         </div>
-        <div class="comments_holder">
-          <Comments></Comments>
+        <div className="comments_holder" style={this.commentsStyle()}>
+          <Comments comments={comments}></Comments>
         </div>
-        <div class = "my_comment">
-
+        <div className="my_comment">
         </div>
       </div>
     );

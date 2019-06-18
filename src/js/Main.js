@@ -1,20 +1,18 @@
 import React from 'react';
-import Data from '../js/Data'
+import {DataLoad, DataDelete} from '../js/DataLoad'
 import Post from '../js/Post'
+
+import addpic from '../assets/img/plus.png'
 
 import '../css/Main.css'
 class Main extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: []
-    }
+
+  state = {
+    items: [],
   }
-
   componentDidMount = async () => {
-    const arr = await Data();
+    const arr = await DataLoad();
     this.setState({items: arr});
-
   }
   
   sortItems = () =>{
@@ -23,19 +21,31 @@ class Main extends React.Component {
     })
   }
 
+  deletePost = async (id) =>{
+    const item = await DataDelete(id);
+    this.setState({items: [...this.state.items.filter(el=>el.id !==item.id)]});
+  }
+
   render() {
-    const {items} = this.state;
+    const {items, show} = this.state;
+    console.log(show);
     
     this.sortItems();
 
     return (
-      
       <div className='main'>
+        <div className='add_new'>
+          <img onClick={this.props.showModal} src={addpic}></img>
+        </div>
         <div className="posts_holder">
           {
             items.map((element) => (
-            <Post key = {element.id} elements={element}>
-            </Post>))
+            <Post 
+              key = {element.id} 
+              delPost={this.deletePost} 
+              element={element}
+            />
+            ))
           }
         </div>
       </div>

@@ -11,26 +11,31 @@ class Post extends React.Component {
 
   render(){
     const { 
-      createdAt,  
       imageUrl, 
       avatar, 
       userName, 
       comments,
       likes,
-      description} = this.props.elements;
+      description,
+      id} = this.props.element;
     
+      
     return(
         <div className="post">
           <div className="post_topblock">
             <div className="group_title">
               <img src = {avatar}></img>
               <p>{userName} </p>
+              <p>{id} </p>
             </div>
             <div></div>
-            <img className='trash' src = {trash}></img>
+            <img className='trash' 
+            onClick={this.props.delPost.bind(this, id)} 
+            src = {trash}></img>
           </div>
           <div className="content">
-            <img src = {this.getRandomPic()}></img>
+            {/* <img src = {this.getRandomPic()}></img> */}
+            <img src = {imageUrl}></img>
           </div>
           <PageBottom 
           className="comments_plock" 
