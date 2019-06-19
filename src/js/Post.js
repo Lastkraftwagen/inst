@@ -17,7 +17,8 @@ class Post extends React.Component {
       comments,
       likes,
       description,
-      id} = this.props.element;
+      id,
+      createdAt} = this.props.element;
     
       
     return(
@@ -26,7 +27,7 @@ class Post extends React.Component {
             <div className="group_title">
               <img src = {avatar}></img>
               <p>{userName} </p>
-              <p>{id} </p>
+              <p>{createdAt} </p>
             </div>
             <div></div>
             <img className='trash' 
@@ -34,7 +35,6 @@ class Post extends React.Component {
             src = {trash}></img>
           </div>
           <div className="content">
-            {/* <img src = {this.getRandomPic()}></img> */}
             <img src = {imageUrl}></img>
           </div>
           <PageBottom 

@@ -1,0 +1,9 @@
+.ul_comments {
+  list-style: none;
+  width: 100%;
+  margin: 0px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 6px;
+  padding-bottom: 5px;
+}

@@ -1,19 +1,21 @@
 import React from 'react';
-import { DataLoad, DataDelete } from '../js/DataLoad'
 import Post from '../js/Post'
+
 
 import addpic from '../assets/img/plus.png'
 
 import '../css/Main.css'
+
 class Main extends React.Component {
 
   state = {
-    items: [],
+    items: this.props.items
   }
 
-  componentDidMount = async() => {
-    const arr = await DataLoad();
-    this.setState({ items: arr });
+  componentDidUpdate(prevProps) {
+    if (this.props.items.length !== prevProps.items.length ) {
+      this.setState({items : this.props.items})
+    }
   }
 
   sortItems = () => {
@@ -22,15 +24,9 @@ class Main extends React.Component {
     })
   }
 
-  deletePost = async (id) => {
-    const item = await DataDelete(id);
-    this.setState({ items: [...this.state.items.filter(el => el.id !== item.id)] });
-  }
-
   render() {
-    const { items, show } = this.state;
+    const { items } = this.state;
     this.sortItems();
-
     return (
       <div className='main'>
         <div className='add_new'>
@@ -41,7 +37,7 @@ class Main extends React.Component {
             items.map((element) => (
               <Post
                 key={element.id}
-                delPost={this.deletePost}
+                delPost={this.props.delPost}
                 element={element}
               />
             ))
@@ -51,6 +47,5 @@ class Main extends React.Component {
     );
   }
 }
-
 
 export default Main;

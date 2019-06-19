@@ -1,3 +1,54 @@
-.ul_comments{
-  
+.ul_comments {
+  list-style: none;
+  width: 100%;
+  margin: 0px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 6px;
+  padding-bottom: 5px;
+}
+
+.ul_comments li {
+  overflow: hidden;
+  padding-bottom: 6px;
+  position: relative;
+  width: 100%;
+  word-wrap: break-word;
+  margin-top: -5px;
+  padding-top: 5px;
+  margin-right: -2px;
+  padding-right: 2px;
+}
+
+.little_heart {
+  background-position: -323px -274px;
+  height: 11px;
+  width: 12px;
+}
+
+.comment_holder {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.comment_body {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  font-size: 14px;
+}
+
+.comment_body h3 {
+  color: #262626;
+  font-size: 14px;
+
+  text-decoration: none;
+  font-weight: 600;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-left: 5px;
+  margin-left: -5px;
 }

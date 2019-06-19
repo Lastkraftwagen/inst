@@ -15,7 +15,7 @@ function Header(props) {
         <div className='search_bar'>
           <div className='search_placeholder'>
             <span className="with_ico search_pic"></span>
-            <input placeholder="Поиск"></input>
+            <span className="sss">Search</span>
           </div>
         </div>
         <div className='header_pics'>
@@ -24,7 +24,8 @@ function Header(props) {
           <div className='with_img right_pic profile'></div>
         </div>
       </div>
-    </div>)
+    </div>
+    )
 }
 
 export default Header

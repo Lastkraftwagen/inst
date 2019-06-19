@@ -49,7 +49,7 @@
   height: 29px;
   width: 103px;
   background-position: -94px -72px;
-  align-self: flex-end
+  align-self: flex-end;
 }
 
 .search_pic {
@@ -74,9 +74,16 @@
   border-radius: 3px;
 }
 
-.search_placeholder {}
+.search_placeholder{
+  display: inline;
+    left: -5px;
+}
 
-.search_placeholder input {
+.search_placeholder .sss {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  cursor: text;
   width: 40px;
   border: 0px solid black;
   color: #999;

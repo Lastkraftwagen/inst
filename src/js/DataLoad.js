@@ -1,4 +1,4 @@
-const DataLoad = async () => {
+export const DataLoad = async () => {
   try {
     const response = await fetch('https://5b27755162e42b0014915662.mockapi.io/api/v1/posts', {
       method: 'GET'
@@ -11,7 +11,7 @@ const DataLoad = async () => {
   }
 }
 
-const DataDelete = (id) => {
+export const DataDelete = (id) => {
   let Url = `https://5b27755162e42b0014915662.mockapi.io/api/v1/posts/${id}`;
   return fetch(Url, {
     method: 'DELETE'
@@ -19,31 +19,26 @@ const DataDelete = (id) => {
     .then(res => res.json());
 };
 
-const DataSend = (element) => {
-  // console.log(JSON.stringify(element));
+export const DataSend = (element) => {
   return fetch("https://5b27755162e42b0014915662.mockapi.io/api/v1/posts",
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "User-Agent": "PostmanRuntime/7.15.0",
-        "Accept": "*/*",
-        "Cache-Control": "no-cache",
-        "Host": "5b27755162e42b0014915662.mockapi.io",
-        "accept-encoding": "gzip, deflate",
-        "content-length": "62156",
-        "Connection": "keep-alive",
-        "cache-control": "no-cache"
+        "Accept": "application/json"
       },
       body: JSON.stringify(element)
-    }).then(res => res.json());
+    }).then(res => {
+      if (res.ok === true) {
+        return res;
+      }
+      else {
+        alert("Картинка завелика!");
+        return null;
+      }
+    })
 }
 
-export { DataSend };
-
-export { DataDelete };
-
-export { DataLoad };
 
 
 // class Data extends Component {

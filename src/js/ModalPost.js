@@ -1,7 +1,5 @@
 import React from 'react';
-import '../css/AddingModal.css';
-import avatar from '../assets/img/avatar.png'
-
+import '../css/ModalPost.css';
 
 class ModalAdd extends React.Component {
 
