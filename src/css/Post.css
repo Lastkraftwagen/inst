@@ -47,6 +47,7 @@
 .trash{
   height: 24px;
   width: 24px;
+  cursor: pointer;
 }
 
 .content{

@@ -33,8 +33,8 @@ class PageBottom extends React.Component {
       this.setState({ likes: this.state.likes - 1 })
     }
     this.setState({ liked: !this.state.liked })
-
   }
+
 
   getHeartClass = () => {
     return this.state.liked ? "with_img heart_red" : "with_img heart";
@@ -48,7 +48,7 @@ class PageBottom extends React.Component {
     } = this.props;
 
     const {
-      likes,
+      likes
     } = this.state;
 
     return (
@@ -61,7 +61,10 @@ class PageBottom extends React.Component {
             </button>
           </span>
           <span>
-            <button className="with_img comment"></button>
+            <button
+              onClick={this.props.showPostModal}
+              className="with_img comment">
+            </button>
           </span>
           <span>
             <button className="with_img share"></button>
@@ -80,7 +83,9 @@ class PageBottom extends React.Component {
           <p> {description}</p>
         </div>
         <div className="comments_holder" style={this.commentsStyle()}>
-          <Comments comments={comments}></Comments>
+          <Comments 
+            comments={comments} 
+            showPostModal={this.props.showPostModal}></Comments>
         </div>
         <div className="my_comment">
         </div>

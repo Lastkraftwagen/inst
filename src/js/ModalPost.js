@@ -1,77 +1,27 @@
 import React from 'react';
 import '../css/ModalPost.css';
 
-class ModalAdd extends React.Component {
-
+class ModalPost extends React.Component {
   modalRef = null;
-  myFormRef = null;
-
-  state = {
-    userName: 'yar_ki',
-    file: '',
-    fileURL: '',
-    descr: ''
-  }
-
   handleClick = (event) => {
     if (this.modalRef !== null && !this.modalRef.contains(event.target))
       this.props.close();
   }
 
-  handleFiles = (e) => {
-    let reader = new FileReader();
-    let file = e.target.files[0];
-
-    if (!file.type.startsWith('image/')) {
-      alert('Виберіть картинку будь ласка!');
-      this.setState({
-        file: "",
-        fileURL: ""
-      });
-      this.myFormRef !== null ?
-        this.myFormRef.reset() : console.log("myFormRef = null");
-      return;
-    }
-    reader.onloadend = () => {
-      this.setState({
-        file: file,
-        fileURL: reader.result
-      });
-    }
-
-    reader.readAsDataURL(file);
+  state = {
+    comments: this.props.comments
   }
-
-  handleChange = (e) => {
-    this.setState({ descr: e.target.value });
-  }
-
-  saveChanges = (e) => {
-    let item = {
-      imageUrl: this.state.fileURL,
-      createdAt: new Date().toISOString(),
-      likes: 0,
-      userName: "yar_ki",
-      avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/louis_currie/128.jpg",
-      description: this.state.descr,
-      comments: []
-    }
-    this.props.apply(item);
-    this.props.close();
-  }
-
   render() {
-    const { userName } = this.state;
-    let { fileURL } = this.state;
-    let image;
-    if (fileURL) {
-      image = (<img className='actual_img' src={fileURL} />);
-    } else {
-      image = (<div className="prev_img">IMAGE</div>);
-    }
-
+    const { comments } = this.state;
+    const {
+      avatar,
+      userName,
+      imageUrl
+    } = this.props.element;
+    console.log(comments);
+    
     return (
-      <div className="modal" onClick={this.handleClick} >
+      <div id="modal_post" onClick={this.handleClick} >
         <div
           className="modal_content"
           ref={param => this.modalRef = param}
@@ -81,34 +31,35 @@ class ModalAdd extends React.Component {
               <img className='avatar' src={avatar}></img>
               <p className='name'>{userName}</p>
             </div>
-            <div></div>
             <span className="close" onClick={this.props.close}>
               &times;
             </span>
           </div>
-          <div className='edit_page'>
-            <form ref={el => this.myFormRef = el}>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={this.handleFiles}
-              />
-            </form>
-            {image}
-            <div className="down_descr">
-              <textarea
-                onChange={this.handleChange}
-                placeholder="Введіть тут опис картинки"
-              />
-              <span className="add" onClick={this.saveChanges}>
-                &#10004;
-            </span>
-            </div>
-          </div>
+          <img className='avatar' src={imageUrl}></img>
+          <div className='comments'>
+            <ul className="ul_comments">
+              {[...comments].map((el) => (
+                <li key={`${el}_${Math.random()}`}>
+                  <div className="comment_holder">
+                    <div>
+                      <div className="comment_body">
+                        <h3>Commentator </h3>
+                        <span>{el}</span>
+                      </div>
+                    </div>
+                    <div className="like_holder">
+                      <div className="with_img little_heart">
 
+                      </div>
+                    </div>
+                  </div>
+                </li>))}
+            </ul>
+          </div>
         </div>
       </div >
     )
   }
 }
-export default ModalAdd;
+
+export default ModalPost;

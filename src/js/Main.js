@@ -9,7 +9,8 @@ import '../css/Main.css'
 class Main extends React.Component {
 
   state = {
-    items: this.props.items
+    items: this.props.items,
+    showModal : false
   }
 
   componentDidUpdate(prevProps) {
@@ -24,8 +25,9 @@ class Main extends React.Component {
     })
   }
 
+
   render() {
-    const { items } = this.state;
+    const { items, showModal } = this.state;
     this.sortItems();
     return (
       <div className='main'>
