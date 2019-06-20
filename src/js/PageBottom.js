@@ -9,7 +9,8 @@ class PageBottom extends React.Component {
   state = {
     comments: [],
     likes: 0,
-    liked: false
+    liked: false,
+    saved: false
   }
 
   commentsStyle = () => {
@@ -35,9 +36,43 @@ class PageBottom extends React.Component {
     this.setState({ liked: !this.state.liked })
   }
 
-
+  save =() =>{
+    this.setState({ saved: !this.state.saved });
+  }
+  
   getHeartClass = () => {
     return this.state.liked ? "with_img heart_red" : "with_img heart";
+  }
+  getSaveClass = () => {
+    return this.state.saved ? "with_img save_black" : "with_img save";
+  }
+
+  createLikePanel = () => {
+    return (
+      <div className="like_panel">
+        <span>
+          <button
+            onClick={this.addLike}
+            className={this.getHeartClass()}>
+          </button>
+        </span>
+        <span>
+          <button
+            onClick={this.props.showPostModal}
+            className="with_img comment">
+          </button>
+        </span>
+        <span>
+          <button className="with_img share"></button>
+        </span>
+        <span>
+          <button 
+            className={this.getSaveClass()}
+            onClick={this.save}
+          ></button>
+        </span>
+      </div>
+    )
   }
 
   render() {
@@ -53,26 +88,7 @@ class PageBottom extends React.Component {
 
     return (
       <div className="comments_block">
-        <div className="like_panel">
-          <span>
-            <button
-              onClick={this.addLike}
-              className={this.getHeartClass()}>
-            </button>
-          </span>
-          <span>
-            <button
-              onClick={this.props.showPostModal}
-              className="with_img comment">
-            </button>
-          </span>
-          <span>
-            <button className="with_img share"></button>
-          </span>
-          <span>
-            <button className="with_img save"></button>
-          </span>
-        </div>
+        {this.createLikePanel()}
         <div className="likes_counter">
           <p>
             {likes} отметок "Нравится"
@@ -83,11 +99,14 @@ class PageBottom extends React.Component {
           <p> {description}</p>
         </div>
         <div className="comments_holder" style={this.commentsStyle()}>
-          <Comments 
-            comments={comments} 
-            showPostModal={this.props.showPostModal}></Comments>
+          <Comments
+            scrollable={false}
+            comments={comments}
+            showPostModal={this.props.showPostModal}>
+          </Comments>
         </div>
         <div className="my_comment">
+
         </div>
       </div>
     );

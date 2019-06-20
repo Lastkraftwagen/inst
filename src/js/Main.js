@@ -41,6 +41,7 @@ class Main extends React.Component {
                 key={element.id}
                 delPost={this.props.delPost}
                 element={element}
+                comments={element.comments}
               />
             ))
           }

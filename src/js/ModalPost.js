@@ -1,16 +1,25 @@
 import React from 'react';
+import Comments from './Comments'
 import '../css/ModalPost.css';
 
 class ModalPost extends React.Component {
+  state = {
+    comments: this.props.comments
+  }
+
   modalRef = null;
+
   handleClick = (event) => {
     if (this.modalRef !== null && !this.modalRef.contains(event.target))
       this.props.close();
   }
 
-  state = {
-    comments: this.props.comments
+  componentDidUpdate(prevProps) {
+    if (this.props.comments !== prevProps.comments) {
+      this.setState({ comments: this.props.comments })
+    }
   }
+
   render() {
     const { comments } = this.state;
     const {
@@ -18,16 +27,15 @@ class ModalPost extends React.Component {
       userName,
       imageUrl
     } = this.props.element;
-    console.log(comments);
-    
+
     return (
       <div id="modal_post" onClick={this.handleClick} >
         <div
-          className="modal_content"
+          className="modal_cont"
           ref={param => this.modalRef = param}
         >
           <div className='topdiv_add'>
-            <div>
+            <div className="ava">
               <img className='avatar' src={avatar}></img>
               <p className='name'>{userName}</p>
             </div>
@@ -35,26 +43,26 @@ class ModalPost extends React.Component {
               &times;
             </span>
           </div>
-          <img className='avatar' src={imageUrl}></img>
-          <div className='comments'>
-            <ul className="ul_comments">
-              {[...comments].map((el) => (
-                <li key={`${el}_${Math.random()}`}>
-                  <div className="comment_holder">
-                    <div>
-                      <div className="comment_body">
-                        <h3>Commentator </h3>
-                        <span>{el}</span>
-                      </div>
-                    </div>
-                    <div className="like_holder">
-                      <div className="with_img little_heart">
-
-                      </div>
-                    </div>
-                  </div>
-                </li>))}
-            </ul>
+          <div className="img_hold">
+            <img src={imageUrl}></img>
+          </div>
+          <Comments
+            scrollable={true}
+            comments={comments}>
+          </Comments>
+          <div className='new_comm_modal'>
+            <div className="new_comm_holder">
+              <input
+                className='input_comm'
+                placeholder="Добавьте комментарий..."
+                onChange={this.props.handleTextChange}
+              />
+              <div
+                className={this.props.createSendStyle()}
+                onClick={this.props.addNewComment}>
+                Опубликовать
+            </div>
+            </div>
           </div>
         </div>
       </div >

@@ -54,7 +54,11 @@
   background-position: -234px -286px;
 }
 
-
+.save_black{
+  height: 24px;
+  width: 24px;
+  background-position: -156px -286px;
+}
 
 
 .likes_counter{
