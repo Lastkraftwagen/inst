@@ -3,8 +3,8 @@
   border-bottom: 1px solid rgba(0, 0, 0, .0975);
   position: fixed;
   top: 0;
-  width: 100%;
   z-index: 1;
+  width: 100%;
   transition: height .2s ease-in-out;
   height: 77px;
   display: flex;
@@ -12,7 +12,9 @@
   justify-content: center;
 }
 
+
 .header_holder {
+  z-index: 1;
   width: 1010px;
   display: flex;
   flex-direction: row;
@@ -117,4 +119,24 @@
 
 .profile{
   background-position: -271px -182px;
+}
+
+@media screen and (max-width: 680px) {
+  .header_cont {
+    height: 60px;   
+    padding: 10px 10px;
+  }
+  .header_holder{
+    padding: 0px;
+    height: auto;
+  }
+  .logo_breacker{
+    display: none;
+  }
+  .logo_text_img{
+    display: none;
+  }
+  .search_bar{
+    display: none;
+  }
 }

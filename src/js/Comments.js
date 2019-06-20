@@ -1,5 +1,4 @@
 import React from 'react';
-import '../css/index.css'
 import '../css/Comments.css'
 import '../css/ModalPost.css';
 
@@ -23,12 +22,10 @@ class Comments extends React.Component {
         {[...comments].map((element) => (
           <div className="li_comment" key={`${element}_${Math.random()}`}>
             <div className="comment_holder">
-              <div>
                 <div className="comment_body">
                   <h3>Commentator </h3>
                   <div className='ddsds'>{element}</div>
                 </div>
-              </div>
               <div className="like_holder">
                 <div className="with_img little_heart">
 

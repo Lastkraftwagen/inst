@@ -20,6 +20,7 @@ class ModalPost extends React.Component {
     }
   }
 
+
   render() {
     const { comments } = this.state;
     const {

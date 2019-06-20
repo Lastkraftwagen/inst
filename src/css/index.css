@@ -14,8 +14,14 @@
 button{
   background: 0 0;
   border: 0;
+  outline: none;
 }
 
 .hidden{
   display: none;
+}
+
+
+*{
+  transition: .5s all;
 }

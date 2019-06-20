@@ -30,9 +30,9 @@ class App extends React.Component {
     this.setState({ items: [...this.state.items.filter(el => el.id !== item.id)] });
   }
 
-  getHeaderClass = () => {
-    return this.state.show ? "hidden" : "header_cont";
-  }
+  // getHeaderClass = () => {
+  //   return this.state.show ? "hidden" : "header_cont";
+  // }
 
   postItem = async (item) => {
     this.setState({ isPicLoading: true });
@@ -63,7 +63,7 @@ class App extends React.Component {
             <div className="App" >
           <Header 
             id='page_header'
-            className={this.getHeaderClass()} />
+            className='header_cont'/>
           <Main 
             class="main" 
             items={items} 

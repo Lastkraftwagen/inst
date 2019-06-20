@@ -1,5 +1,6 @@
 
 .main{
+  margin-top: 77px;
   display: flex;
   flex-direction: column;
   background-color: #fafafa;
@@ -7,6 +8,8 @@
 }
 
 .posts_holder{
+  align-items: center;
+
 }
 
 .add_new{
@@ -22,4 +25,19 @@
 }
 .add_new img:hover{
   box-shadow: 0px 0px 15px gray;
+}
+
+@media screen and (max-width: 680px) {
+  .main {
+    margin-top: 60px;
+  }
+  .add_new{
+    height: 50px;
+  }
+  
+  .add_new img{
+    margin: 10px;
+    height: 35px;
+    width: 35px;
+  }
 }

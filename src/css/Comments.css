@@ -77,3 +77,32 @@
   cursor: pointer;
 
 }
+
+
+@media screen and (max-width: 620px) {
+  .ddsds{
+    overflow: auto;
+    max-width: 300px;
+    width: auto;
+  }
+  .comment_body h3 {
+    width: auto;
+  }
+  
+  .like_holder{
+    width: 10%;
+  }
+
+  .ul_comments{
+    padding: 0px;
+    padding-left: 16px;
+    max-width: 100%;
+  }
+}
+
+
+@media screen and (max-width: 420px) {
+  .ddsds{
+    max-width: 200px;
+  }
+}

@@ -36,10 +36,10 @@ class PageBottom extends React.Component {
     this.setState({ liked: !this.state.liked })
   }
 
-  save =() =>{
+  save = () => {
     this.setState({ saved: !this.state.saved });
   }
-  
+
   getHeartClass = () => {
     return this.state.liked ? "with_img heart_red" : "with_img heart";
   }
@@ -66,7 +66,7 @@ class PageBottom extends React.Component {
           <button className="with_img share"></button>
         </span>
         <span>
-          <button 
+          <button
             className={this.getSaveClass()}
             onClick={this.save}
           ></button>
@@ -94,10 +94,12 @@ class PageBottom extends React.Component {
             {likes} отметок "Нравится"
           </p>
         </div>
-        <div className="post_descr">
-          <h2> {userName}</h2>
-          <p> {description}</p>
-        </div>
+        {description != '' &&
+          (<div className="post_descr">
+            <h2> {userName}</h2>
+            <p> {description}</p>
+          </div>)
+        }
         <div className="comments_holder" style={this.commentsStyle()}>
           <Comments
             scrollable={false}

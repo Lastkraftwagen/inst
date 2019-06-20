@@ -97,6 +97,8 @@
 .comments{
   height: 20%;
   overflow: auto;
+  padding: 10px;
+  margin: 10px;
   background-color: #fafafa;
 }
 
@@ -114,4 +116,26 @@
   font-size: 14px;
   line-height: 18px;
   height: 10%;
+}
+
+.time{
+  margin-left: 16px;
+  font-size: 12px;
+  letter-spacing: .2px;
+  color: #999;
+}
+
+@media screen and (max-width: 680px) {
+   .modal_cont{
+    max-width: 95%;
+    height: 85%;
+  }
+  .img_hold{
+    max-width: 90%;
+    height: 60%;
+  }
+  #modal_post .close {
+    font-size: 28px;
+  
+  }
 }
