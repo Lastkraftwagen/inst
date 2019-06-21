@@ -1,10 +1,8 @@
 import React from 'react';
 import '../css/AddingModal.css';
-import avatar from '../assets/img/avatar.png'
-
+import avatar from '../assets/img/avatar.png';
 
 class ModalAdd extends React.Component {
-
   modalRef = null;
   myFormRef = null;
 
@@ -12,89 +10,84 @@ class ModalAdd extends React.Component {
     userName: 'yar_ki',
     file: '',
     fileURL: '',
-    descr: ''
-  }
+    descr: '',
+  };
 
-  handleClick = (event) => {
+  handleClick = event => {
     if (this.modalRef !== null && !this.modalRef.contains(event.target))
       this.props.close();
-  }
+  };
 
-  handleFiles = (e) => {
+  handleFiles = e => {
     let reader = new FileReader();
     let file = e.target.files[0];
 
     if (!file.type.startsWith('image/')) {
       alert('Виберіть картинку будь ласка!');
       this.setState({
-        file: "",
-        fileURL: ""
+        file: '',
+        fileURL: '',
       });
-      this.myFormRef !== null ?
-        this.myFormRef.reset() : console.log("myFormRef = null");
+      this.myFormRef !== null
+        ? this.myFormRef.reset()
+        : console.log('myFormRef = null');
       return;
     }
     reader.onloadend = () => {
       this.setState({
         file: file,
-        fileURL: reader.result
+        fileURL: reader.result,
       });
-    }
+    };
 
     reader.readAsDataURL(file);
-  }
+  };
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState({ descr: e.target.value });
-  }
+  };
 
-  saveChanges = (e) => {
+  saveChanges = e => {
     let item = {
       imageUrl: this.state.fileURL,
       createdAt: new Date().toISOString(),
       likes: 0,
-      userName: "yar_ki",
-      avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/louis_currie/128.jpg",
+      userName: 'yar_ki',
+      avatar:
+        'https://s3.amazonaws.com/uifaces/faces/twitter/louis_currie/128.jpg',
       description: this.state.descr,
-      comments: []
-    }
+      comments: [],
+    };
     this.props.apply(item);
     this.props.close();
-  }
+  };
 
   render() {
     const { userName } = this.state;
     let { fileURL } = this.state;
     let image;
     if (fileURL) {
-      image = (<img className='actual_img' src={fileURL} />);
+      image = <img className="actual_img" src={fileURL} />;
     } else {
-      image = (<div className="prev_img">IMAGE</div>);
+      image = <div className="prev_img">IMAGE</div>;
     }
 
     return (
-      <div className="modal" onClick={this.handleClick} >
-        <div
-          className="modal_content"
-          ref={param => this.modalRef = param}
-        >
-          <div className='topdiv_add'>
+      <div className="modal" onClick={this.handleClick}>
+        <div className="modal_content" ref={param => (this.modalRef = param)}>
+          <div className="topdiv_add">
             <div>
-              <img className='avatar' src={avatar}></img>
-              <p className='name'>{userName}</p>
+              <img className="avatar" src={avatar} />
+              <p className="name">{userName}</p>
             </div>
-            <div></div>
+            <div />
             <span className="close" onClick={this.props.close}>
               &times;
             </span>
           </div>
-          <div className='edit_page'>
-            <form ref={el => this.myFormRef = el}>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={this.handleFiles}
-              />
+          <div className="edit_page">
+            <form ref={el => (this.myFormRef = el)}>
+              <input type="file" accept="image/*" onChange={this.handleFiles} />
             </form>
             {image}
             <div className="down_descr">
@@ -104,13 +97,12 @@ class ModalAdd extends React.Component {
               />
               <span className="add" onClick={this.saveChanges}>
                 &#10004;
-            </span>
+              </span>
             </div>
           </div>
-
         </div>
-      </div >
-    )
+      </div>
+    );
   }
 }
 export default ModalAdd;

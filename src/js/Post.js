@@ -35,7 +35,7 @@ class Post extends React.Component {
   }
 
   componentDidMount = () => {
-    if (this.props.comments == undefined) {
+    if (this.props.comments === undefined) {
       this.setState({ comments: [] })
     }
     this.getDateDifference();
@@ -102,7 +102,8 @@ class Post extends React.Component {
       userName,
       likes,
       description,
-      id } = this.props.element;
+      id 
+    } = this.props.element;
 
     const {
       comments,
@@ -158,7 +159,7 @@ class Post extends React.Component {
             createSendStyle={this.createSendStyle}
             addNewComment={this.addNewComment}
             handleTextChange={this.handleTextChange}
-          ></ModalPost>}
+          />}
       </div>
     );
   }
