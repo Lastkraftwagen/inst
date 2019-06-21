@@ -125,15 +125,65 @@
   
 }
 
+#drop_area{
+ 
+  background-color: #fafafa;
+  width: 90%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 20%;
+  border: 2px dashed #ccc;
+
+}
+
+#drop_area form{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+#drop_area.highlight {
+  border-color: purple;
+  background-color: white;
+
+}
+
+input[type=file] {
+  color: transparent;
+  padding-left: 120px;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
 .down_descr{
   width: 100%;
   justify-content: space-around;
   padding: 3px;
 }
 
+
+@media screen and (max-width: 1250px) {
+  .modal_content{
+    width: 80%;
+    height: 85%;
+  }
+}
+
 @media screen and (max-width: 680px) {
   .modal_content{
     width: 95%;
     height: 85%;
+  }
+  #drop_area{
+    margin-top: 2px;
+    margin-bottom: 2px;
   }
 }

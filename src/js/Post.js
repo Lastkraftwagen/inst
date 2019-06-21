@@ -59,6 +59,7 @@ class Post extends React.Component {
     }
     else if (now.getDay() - createdAt.getDay() >= 1) {
       diff = now.getDay() - createdAt.getDay();
+      if(diff == 1) {this.setState({timestring: "1 день назад"}); return;}
 
       this.setState({
         timestring: diff < 5 ?
@@ -68,6 +69,8 @@ class Post extends React.Component {
     }
     else if (now.getHours() - createdAt.getHours() > 1) {
       diff = now.getHours() - createdAt.getHours();
+      if(diff == 1) {this.setState({timestring: "1 час назад"}); return;}
+
       this.setState({
         timestring: diff < 5 ?
         `${diff} часа назад` :

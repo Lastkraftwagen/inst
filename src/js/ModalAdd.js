@@ -15,14 +15,62 @@ class ModalAdd extends React.Component {
     descr: ''
   }
 
+
+  componentDidMount = ()=>{
+    let dropArea = document.getElementById('drop_area');
+    let label = document.getElementById('fakeButton');
+
+    [
+      'dragenter',
+      'dragover',
+      'dragleave',
+      'drop'
+    ].forEach(eventName => {
+      dropArea.addEventListener(eventName, this.preventDefaults, false)
+    });
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropArea.addEventListener(
+        eventName, 
+        () => {dropArea.classList.add('highlight')}, 
+        false)
+    });
+    
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropArea.addEventListener(
+        eventName, 
+        ()=>{dropArea.classList.remove('highlight')},
+        false)
+    });
+
+    dropArea.addEventListener('drop', this.handleDrop, false)
+    label.addEventListener(
+      'onclick', 
+      () => {document.getElementById("fileElem").click()}, 
+      false)
+  }
+
+  handleDrop = (e) => {
+    let droppedFiles = e.dataTransfer.files;
+    if(droppedFiles.length > 1) {
+      alert('Буде вибрано лише один файл!');
+    }
+    this.handleFiles([...droppedFiles])
+  }
+
+  preventDefaults = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+  }
+
   handleClick = (event) => {
     if (this.modalRef !== null && !this.modalRef.contains(event.target))
       this.props.close();
   }
 
-  handleFiles = (e) => {
+  handleFiles = (files) => {
     let reader = new FileReader();
-    let file = e.target.files[0];
+    let file = files[0];
 
     if (!file.type.startsWith('image/')) {
       alert('Виберіть картинку будь ласка!');
@@ -89,13 +137,18 @@ class ModalAdd extends React.Component {
             </span>
           </div>
           <div className='edit_page'>
-            <form ref={el => this.myFormRef = el}>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={this.handleFiles}
-              />
-            </form>
+            <div id="drop_area">
+              <form ref={el => this.myFormRef = el}>
+                <input
+                  type="file"
+                  id="fileElem"
+                  accept="image/*"
+                  onChange={this.handleFiles}></input>
+                <label id='fakeButton' className='button'>
+                  или перетащите сюда фото
+                </label>
+              </form>
+            </div>
             {image}
             <div className="down_descr">
               <textarea
