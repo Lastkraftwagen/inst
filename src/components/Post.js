@@ -1,5 +1,5 @@
 import React from 'react';
-import PageBottom from '../js/PageBottom'
+import PageBottom from './PageBottom'
 import ModalPost from './ModalPost'
 import '../css/Post.css';
 import trash from '../assets/img/trash.png'
@@ -12,20 +12,11 @@ class Post extends React.Component {
     createdAt: this.props.element.createdAt,
     timestring: ''
   }
-
-  getRandomPic = () => {
-    return `https://picsum.photos/id/${Math.floor(Math.random() * 200)}/600/${Math.floor(Math.random() * 200) + 300}`;
-  }
-
   openComments = () => {
     this.setState({ showModal: !this.state.showModal })
   }
 
   addNewComment = () => {
-    let now = new Date()
-    let createdAt = new Date(this.state.createdAt);
-
-    
     if (this.state.comment !== '')
       this.setState({ comments: [...this.state.comments, this.state.comment] })
   }
@@ -35,7 +26,7 @@ class Post extends React.Component {
   }
 
   componentDidMount = () => {
-    if (this.props.comments == undefined) {
+    if (this.props.comments === undefined) {
       this.setState({ comments: [] })
     }
     this.getDateDifference();
@@ -50,16 +41,16 @@ class Post extends React.Component {
     }
     else if (now.getMonth() - createdAt.getMonth() > 1) {
       diff = now.getMonth() - createdAt.getMonth();
-      if(diff == 1) {this.setState({timestring: "1 месяц назад"}); return;}
+      if(diff === 1) {this.setState({timestring: "1 месяц назад"}); return;}
       this.setState({
         timestring: diff < 5 ?
           `${diff} месяца назад` :
           `${diff} месяцев назад`
       });
     }
-    else if (now.getDay() - createdAt.getDay() >= 1) {
-      diff = now.getDay() - createdAt.getDay();
-      if(diff == 1) {this.setState({timestring: "1 день назад"}); return;}
+    else if (now.getDate() - createdAt.getDate() >= 1) {
+      diff = now.getDate() - createdAt.getDate();
+      if(diff === 1) {this.setState({timestring: "1 день назад"}); return;}
 
       this.setState({
         timestring: diff < 5 ?
@@ -69,7 +60,7 @@ class Post extends React.Component {
     }
     else if (now.getHours() - createdAt.getHours() > 1) {
       diff = now.getHours() - createdAt.getHours();
-      if(diff == 1) {this.setState({timestring: "1 час назад"}); return;}
+      if(diff === 1) {this.setState({timestring: "1 час назад"}); return;}
 
       this.setState({
         timestring: diff < 5 ?
@@ -109,24 +100,28 @@ class Post extends React.Component {
 
     const {
       comments,
-      showModal,
-      createdAt
+      showModal
     } = this.state;
 
     return (
       <div className="post">
         <div className="post_topblock">
           <div className="group_title">
-            <img src={avatar}></img>
+            <img 
+            src={avatar}
+            alt="avatar"></img>
             <p>{userName} </p>
           </div>
           <div></div>
-          <img className='trash'
+          <img 
+            className='trash'
             onClick={this.props.delPost.bind(this, id)}
-            src={trash}></img>
+            src={trash}
+            alt="avatar"
+          />
         </div>
         <div className="content">
-          <img src={imageUrl}></img>
+          <img src={imageUrl} alt="content"></img>
         </div>
         <PageBottom
           className="comments_block"

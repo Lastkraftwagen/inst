@@ -1,5 +1,5 @@
 import React from 'react';
-import Post from '../js/Post'
+import Post from './Post'
 
 
 import addpic from '../assets/img/plus.png'
@@ -27,12 +27,15 @@ class Main extends React.Component {
 
 
   render() {
-    const { items, showModal } = this.state;
+    const { items } = this.state;
     this.sortItems();
     return (
       <div className='main'>
         <div className='add_new'>
-          <img onClick={this.props.showModal} src={addpic}></img>
+          <img 
+          alt='plus'
+          onClick={this.props.showModal} 
+          src={addpic}></img>
         </div>
         <div className="posts_holder">
           {

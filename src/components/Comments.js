@@ -100,7 +100,7 @@ class Comments extends React.Component {
         <ul></ul>
       );
     }
-    else if (this.props.scrollable == false) {
+    else if (this.props.scrollable === false) {
       if (comments.length <= 3) {
         return this.showLessComments();
       }
@@ -108,7 +108,7 @@ class Comments extends React.Component {
         return this.showMoreComments();
       }
     }
-    else if (this.props.scrollable == true) {
+    else if (this.props.scrollable === true) {
       return this.showScrollComments();
     }
     return (<ul></ul>)

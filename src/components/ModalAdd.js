@@ -115,7 +115,7 @@ class ModalAdd extends React.Component {
     let { fileURL } = this.state;
     let image;
     if (fileURL) {
-      image = (<img className='actual_img' src={fileURL} />);
+      image = (<img className='actual_img' alt='avatar' src={fileURL} />);
     } else {
       image = (<div className="prev_img">IMAGE</div>);
     }
@@ -128,7 +128,11 @@ class ModalAdd extends React.Component {
         >
           <div className='topdiv_add'>
             <div>
-              <img className='avatar' src={avatar}></img>
+              <img 
+                className='avatar' 
+                src={avatar}
+                alt='avatar'
+                ></img>
               <p className='name'>{userName}</p>
             </div>
             <div></div>

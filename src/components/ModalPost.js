@@ -37,7 +37,11 @@ class ModalPost extends React.Component {
         >
           <div className='topdiv_add'>
             <div className="ava">
-              <img className='avatar' src={avatar}></img>
+              <img 
+                className='avatar'
+                src={avatar}
+                alt="avatar"
+              />
               <p className='name'>{userName}</p>
             </div>
             <span className="close" onClick={this.props.close}>
@@ -45,7 +49,10 @@ class ModalPost extends React.Component {
             </span>
           </div>
           <div className="img_hold">
-            <img src={imageUrl}></img>
+            <img 
+              src={imageUrl}
+              alt="avatar"
+            />
           </div>
           <Comments
             scrollable={true}

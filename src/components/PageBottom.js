@@ -94,7 +94,7 @@ class PageBottom extends React.Component {
             {likes} отметок "Нравится"
           </p>
         </div>
-        {description != '' &&
+        {description !== '' &&
           (<div className="post_descr">
             <h2> {userName}</h2>
             <p> {description}</p>

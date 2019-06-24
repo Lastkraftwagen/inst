@@ -1,28 +1,21 @@
 import React from 'react';
+import { Provider } from "react-redux";
+
 import ReactDOM from 'react-dom';
 import './css/App.css';
-import App from './js/App';
+import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
 
+import configureStore  from "./store/index"
 
-// let data;
+const store  = configureStore();
 
-// const fetchAll = async () => {
-//   try {
-//     const response = await fetch('https://5b27755162e42b0014915662.mockapi.io/api/v1/posts', {
-//       method: 'GET'
-//     })
-//     if (response) {
-//       data = await response.json();
-//       initialise();
-//     }
-//   } catch (error) {
-//     console.log({ error });
-//   }
-// }
-// document.addEventListener('loadend', fetchAll())
 
-ReactDOM.render(<App />, document.getElementById('root'));
-
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
 
 serviceWorker.unregister();

@@ -23,5 +23,5 @@ button{
 
 
 *{
-  transition: .5s all;
+  transition: margin, padding, width, height .5s;
 }

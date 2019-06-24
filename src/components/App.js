@@ -1,38 +1,32 @@
 import React from 'react';
-import Header from "../js/Header"
+import Header from "./Header"
 import Main from "./Main"
 import ModalAdd from "./ModalAdd"
-import { DataLoad, DataSend, DataDelete } from '../js/DataLoad'
+import { DataSend } from './DataLoad'
+
 
 import '../css/index.css';
 import '../css/App.css';
-
 
 class App extends React.Component {
 
   state = {
     show: false,
-    isLoaded: false,
-    items: []
+    // isLoaded: false,
+    // items: []
   }
 
-  componentDidMount = async () => {
-    const arr = await DataLoad();
 
-    this.setState({ items: arr });
-    if (this.state.items.length != 0) {
-      this.setState({ isLoaded: true });
-    }
+  componentDidMount = () => {
+    this.props.loadData();
   }
   
-  deletePost = async (id) => {
-    const item = await DataDelete(id);
-    this.setState({ items: [...this.state.items.filter(el => el.id !== item.id)] });
-  }
+  deletePost = (id) => {
 
-  // getHeaderClass = () => {
-  //   return this.state.show ? "hidden" : "header_cont";
-  // }
+    this.props.dataDelete(id);
+    // const item = await DataDelete(id);
+    // this.setState({ items: [...this.state.items.filter(el => el.id !== item.id)] });
+  }
 
   postItem = async (item) => {
     this.setState({ isPicLoading: true });
@@ -42,8 +36,6 @@ class App extends React.Component {
     {
       const temp = await i.json();
       item.id = temp.id;
-      console.log(item);
-      
       this.setState({ items: [...this.state.items, item] });
     }
   }
@@ -57,7 +49,9 @@ class App extends React.Component {
   }
 
   render() {
-    const { show, isLoaded, items } = this.state;
+    // const { show, isLoaded, items } = this.state;
+    const{show} = this.state;
+    const { items, isLoaded } = this.props;
     if (isLoaded) {
       return (
             <div className="App" >
