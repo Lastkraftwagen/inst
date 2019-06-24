@@ -9,33 +9,20 @@ import '../css/App.css';
 class App extends React.Component {
 
   state = {
-    show: false,
-    // isLoaded: false,
-    // items: []
+    show: false
   }
 
 
   componentDidMount = () => {
     this.props.loadData();
   }
-  
-  deletePost = (id) => {
 
-    this.props.dataDelete(id);
-    // const item = await DataDelete(id);
-    // this.setState({ items: [...this.state.items.filter(el => el.id !== item.id)] });
-  }
+  // deletePost = (id) => {
+  //   this.props.dataDelete(id);
+  // }
 
   postItem = (item) => {
-    // const i = await DataSend(item);
     this.props.postItem(item);
-    
-    // if (i != null)
-    // {
-    //   const temp = await i.json();
-    //   item.id = temp.id;
-    //   this.setState({ items: [...this.state.items, item] });
-    // }
   }
 
   showModal = () => {
@@ -47,19 +34,23 @@ class App extends React.Component {
   }
 
   render() {
-    // const { show, isLoaded, items } = this.state;
-    const{show} = this.state;
-    const { items, isLoaded } = this.props;
+    const {
+      show
+    } = this.state;
+    const {
+      items,
+      isLoaded,
+      dataDelete } = this.props;
     if (isLoaded) {
       return (
-            <div className="App" >
-          <Header 
+        <div className="App" >
+          <Header
             id='page_header'
-            className='header_cont'/>
-          <Main 
-            class="main" 
-            items={items} 
-            delPost={this.deletePost}
+            className='header_cont' />
+          <Main
+            className="main"
+            items={items}
+            delPost={dataDelete}
             showModal={this.showModal} />
           {show && <ModalAdd close={this.closeModal} apply={this.postItem} />}
         </div>

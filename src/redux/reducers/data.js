@@ -20,7 +20,6 @@ const initialState = {
 
 
 export const loadDataReducer = (state = initialState, action) => {
-console.log(action.type);
 
   switch (action.type) {
     case LOAD_SUCCESS:
@@ -36,8 +35,6 @@ console.log(action.type);
       };
 
       case POST_SUCCESS:
-        console.log(action.element);
-        
         return {
           ...state,
           items: [...state.items, action.element]

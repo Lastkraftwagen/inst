@@ -11,7 +11,7 @@
 
 }
 
-button{
+button, input{
   background: 0 0;
   border: 0;
   outline: none;
