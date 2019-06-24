@@ -6,25 +6,25 @@
 //     .then(res => res.json());
 // };
 
-export const DataSend = (element) => {
-  return fetch("https://5b27755162e42b0014915662.mockapi.io/api/v1/posts",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify(element)
-    }).then(res => {
-      if (res.ok === true) {
-        return res;
-      }
-      else {
-        alert("Картинка завелика!");
-        return null;
-      }
-    })
-}
+// export const DataSend = (element) => {
+//   return fetch("https://5b27755162e42b0014915662.mockapi.io/api/v1/posts",
+//     {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//         "Accept": "application/json"
+//       },
+//       body: JSON.stringify(element)
+//     }).then(res => {
+//       if (res.ok === true) {
+//         return res;
+//       }
+//       else {
+//         alert("Картинка завелика!");
+//         return null;
+//       }
+//     })
+// }
 
 
 

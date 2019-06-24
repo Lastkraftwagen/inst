@@ -68,6 +68,10 @@ class ModalAdd extends React.Component {
       this.props.close();
   }
 
+  hanleFile = (e) =>{
+    this.handleFiles(e.target.files)
+  }
+
   handleFiles = (files) => {
     let reader = new FileReader();
     let file = files[0];
@@ -147,7 +151,7 @@ class ModalAdd extends React.Component {
                   type="file"
                   id="fileElem"
                   accept="image/*"
-                  onChange={this.handleFiles}></input>
+                  onChange={this.hanleFile}></input>
                 <label id='fakeButton' className='button'>
                   или перетащите сюда фото
                 </label>

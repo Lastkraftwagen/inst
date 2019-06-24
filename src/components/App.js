@@ -2,8 +2,6 @@ import React from 'react';
 import Header from "./Header"
 import Main from "./Main"
 import ModalAdd from "./ModalAdd"
-import { DataSend } from './DataLoad'
-
 
 import '../css/index.css';
 import '../css/App.css';
@@ -28,16 +26,16 @@ class App extends React.Component {
     // this.setState({ items: [...this.state.items.filter(el => el.id !== item.id)] });
   }
 
-  postItem = async (item) => {
-    this.setState({ isPicLoading: true });
-    const i = await DataSend(item);
+  postItem = (item) => {
+    // const i = await DataSend(item);
+    this.props.postItem(item);
     
-    if (i != null)
-    {
-      const temp = await i.json();
-      item.id = temp.id;
-      this.setState({ items: [...this.state.items, item] });
-    }
+    // if (i != null)
+    // {
+    //   const temp = await i.json();
+    //   item.id = temp.id;
+    //   this.setState({ items: [...this.state.items, item] });
+    // }
   }
 
   showModal = () => {

@@ -2,7 +2,11 @@ import {
   LOAD_REQUEST,
   LOAD_SUCCESS,
   DELETE_DATA,
-  DELETE_SUCCESS
+  DELETE_SUCCESS,
+  POST_DATA,
+  POST_SUCCESS,
+  DELETE_FAIL,
+  POST_FAIL
 } from "../constants";
 
 
@@ -45,6 +49,33 @@ export const dataDelete = (id) => {
   }
 }
 
-export const postItem = (item) =>{
-  
+export const postItem = (element) => {
+  return (dispatch) => {
+    dispatch({
+      type: POST_DATA
+    });
+    return fetch("https://5b27755162e42b0014915662.mockapi.io/api/v1/posts",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(element)
+      }).then(res => {
+        return res.json();
+      }).then(json => {
+        return dispatch({
+          type: POST_SUCCESS,
+          element: json
+        });
+      }
+      ).catch(err => {
+        return dispatch({
+          type: POST_FAIL,
+          error: err
+        });
+      }
+      )
+  }
 }

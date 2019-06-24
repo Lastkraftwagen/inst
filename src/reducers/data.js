@@ -1,10 +1,12 @@
-import { 
-  POST_SUCCESS, 
-  LOAD_REQUEST, 
+import {
+  LOAD_REQUEST,
   LOAD_SUCCESS,
-  DELETE_SUCCESS
+  DELETE_DATA,
+  DELETE_SUCCESS,
+  POST_DATA,
+  POST_SUCCESS,
+  DELETE_FAIL
 } from "../constants";
-
 
 
 const initialState = {
@@ -30,8 +32,15 @@ console.log(action.type);
     case DELETE_SUCCESS:
       return {
         ...state,
-        isLoaded: true,
         items: state.items.filter(el => el.id !== action.element.id)
+      };
+
+      case POST_SUCCESS:
+        console.log(action.element);
+        
+        return {
+          ...state,
+          items: [...state.items, action.element]
       };
 
     default:
