@@ -1,7 +1,7 @@
 import React from 'react';
 import './AddingModal.css';
 import avatar from '../../assets/img/avatar.png'
-
+var classNames = require('classnames');
 
 class ModalAdd extends React.Component {
 
@@ -12,67 +12,39 @@ class ModalAdd extends React.Component {
     userName: 'yar_ki',
     file: '',
     fileURL: '',
-    descr: ''
-  }
-
-
-  componentDidMount = ()=>{
-    let dropArea = document.getElementById('drop_area');
-    let label = document.getElementById('fakeButton');
-
-    [
-      'dragenter',
-      'dragover',
-      'dragleave',
-      'drop'
-    ].forEach(eventName => {
-      dropArea.addEventListener(eventName, this.preventDefaults, false)
-    });
-
-    ['dragenter', 'dragover'].forEach(eventName => {
-      dropArea.addEventListener(
-        eventName, 
-        () => {dropArea.classList.add('highlight')}, 
-        false)
-    });
-    
-    ['dragleave', 'drop'].forEach(eventName => {
-      dropArea.addEventListener(
-        eventName, 
-        ()=>{dropArea.classList.remove('highlight')},
-        false)
-    });
-
-    dropArea.addEventListener('drop', this.handleDrop, false)
-    label.addEventListener(
-      'onclick', 
-      () => {document.getElementById("fileElem").click()}, 
-      false)
+    descr: '',
+    onDrag: false
   }
 
   handleDrop = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
     let droppedFiles = e.dataTransfer.files;
-    if(droppedFiles.length > 1) {
+    if (droppedFiles.length > 1) {
       alert('Буде вибрано лише один файл!');
     }
     this.handleFiles([...droppedFiles])
   }
 
-  preventDefaults = (e) => {
+  dragOn = (e) => {
     e.preventDefault()
     e.stopPropagation()
+    this.setState({ onDrag: true });
+  }
+  dragOff = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    this.setState({ onDrag: false });
   }
 
   handleClick = (event) => {
     if (this.modalRef !== null && !this.modalRef.contains(event.target))
       this.props.close();
   }
-
-  hanleFile = (e) =>{
-    this.handleFiles(e.target.files)
-  }
-
+  
   handleFiles = (files) => {
+    this.setState({ onDrag: false });
+
     let reader = new FileReader();
     let file = files[0];
 
@@ -115,13 +87,13 @@ class ModalAdd extends React.Component {
   }
 
   render() {
-    const { 
-      userName 
+    const {
+      userName
     } = this.state;
-    let { 
-      fileURL 
+    let {
+      fileURL
     } = this.state;
-    
+
     let image;
     if (fileURL) {
       image = (<img className='actual_img' alt='avatar' src={fileURL} />);
@@ -137,11 +109,11 @@ class ModalAdd extends React.Component {
         >
           <div className='topdiv_add'>
             <div>
-              <img 
-                className='avatar' 
+              <img
+                className='avatar'
                 src={avatar}
                 alt='avatar'
-                ></img>
+              ></img>
               <p className='name'>{userName}</p>
             </div>
             <div></div>
@@ -150,13 +122,24 @@ class ModalAdd extends React.Component {
             </span>
           </div>
           <div className='edit_page'>
-            <div id="drop_area">
+            <div
+              id="drop_area"
+              className={classNames({
+                'highlight': this.state.onDrag
+              })}
+              onDragEnter={this.dragOn}
+              onDragOver={this.dragOn}
+              onDragLeave={this.dragOff}
+              onDrop={this.handleDrop}
+            >
               <form ref={el => this.myFormRef = el}>
                 <input
                   type="file"
                   id="fileElem"
                   accept="image/*"
-                  onChange={this.hanleFile}></input>
+                  onChange={(e) => {
+                    this.handleFiles(e.target.files)
+                  }}></input>
                 <label id='fakeButton' className='button'>
                   или перетащите сюда фото
                 </label>

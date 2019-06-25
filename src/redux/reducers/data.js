@@ -1,7 +1,6 @@
 import {
   LOAD_SUCCESS,
   DELETE_SUCCESS,
-  POST_FAIL,
   POST_SUCCESS
 } from "../constants";
 
@@ -22,7 +21,9 @@ export const loadDataReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoaded: true,
-        items: action.payload,
+        items: action.payload.sort((a, b) => {
+          return new Date(b.createdAt) - new Date(a.createdAt);
+        })
       };
 
     case DELETE_SUCCESS:
@@ -34,12 +35,10 @@ export const loadDataReducer = (state = initialState, action) => {
       case POST_SUCCESS:
         return {
           ...state,
-          items: [...state.items, action.element]
+          items: [...state.items, action.element].sort((a, b) => {
+            return new Date(b.createdAt) - new Date(a.createdAt);
+          })
       };
-
-      case POST_FAIL:
-        alert("Картинка завелика");
-        break;
 
     default:
       return state;

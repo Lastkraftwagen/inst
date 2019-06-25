@@ -8,10 +8,11 @@ class ModalPost extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.comments !== prevProps.comments) {
-      this.setState({ comments: this.props.comments })
+      this.setState({ 
+        comments: this.props.comments 
+      })
     }
   }
-
 
   render() {
     const { 

@@ -68,14 +68,14 @@
   border: 0;
   color: #1075d4;
   display: inline;
-  padding: 0;
+  padding-right: 10px;
   cursor: pointer;
 }
 
 .send_active{
   color: hsl(209, 95%, 84%);
   cursor: pointer;
-
+  padding-right: 15px;
 }
 
 

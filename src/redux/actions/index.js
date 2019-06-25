@@ -38,8 +38,8 @@ export const dataDelete = (id) => {
     let Url = `https://5b27755162e42b0014915662.mockapi.io/api/v1/posts/${id}`;
     return fetch(Url, {
       method: 'DELETE'
-    }).then(
-      res => res.json()
+    }).then( 
+      res => res.json() 
     ).then(
       json => dispatch({
         type: DELETE_SUCCESS,
@@ -67,7 +67,11 @@ export const postItem = (element) => {
         },
         body: JSON.stringify(element)
       }).then(res => {
-        return res.json();
+        
+      if(!res.ok){
+        alert("Помилка при завантаженні картинки\n"+res.statusText+" "+res.status)
+      }
+      return res.json()
       }).then(json => {
         return dispatch({
           type: POST_SUCCESS,
