@@ -115,7 +115,7 @@ class Post extends React.Component {
           <div></div>
           <img 
             className='trash'
-            onClick={this.props.delPost.bind(this, id)}
+            onClick={this.props.dataDelete.bind(this,id)}
             src={trash}
             alt="avatar"
           />

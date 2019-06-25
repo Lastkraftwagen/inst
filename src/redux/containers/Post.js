@@ -1,19 +1,17 @@
 import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
-import App from "../../components/App"
-import { loadData, dataDelete, postItem } from "../actions";
+import Post from "../../components/Post"
+import { dataDelete } from "../actions";
 
 const mapStateToProps = state => ({
-  items: state.loadDataReducer.items,
-  isLoaded: state.loadDataReducer.isLoaded
+  items: state.loadDataReducer.items
 });
 
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      loadData,
-      postItem
+      dataDelete,
     },
     dispatch,
   );
@@ -21,4 +19,4 @@ const mapDispatchToProps = dispatch =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(App);
+)(Post);

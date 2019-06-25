@@ -3,7 +3,7 @@ import {
   LOAD_SUCCESS,
   DELETE_DATA,
   DELETE_SUCCESS,
-  POST_DATA,
+  POST_FAIL,
   POST_SUCCESS,
   DELETE_FAIL
 } from "../constants";
@@ -11,7 +11,7 @@ import {
 
 const initialState = {
   isLoaded: false,
-  items: []
+  items: [],
 };
 
 
@@ -38,6 +38,8 @@ export const loadDataReducer = (state = initialState, action) => {
           ...state,
           items: [...state.items, action.element]
       };
+      case POST_FAIL:
+        alert("Картинка завелика");
 
     default:
       return state;

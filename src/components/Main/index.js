@@ -1,5 +1,5 @@
 import React from 'react';
-import Post from '../Post'
+import Post from "../../redux/containers/Post"
 
 
 import addpic from '../../assets/img/plus.png'
@@ -10,7 +10,7 @@ class Main extends React.Component {
 
   state = {
     items: this.props.items,
-    showModal : false
+    showModal: false
   }
 
   componentDidUpdate(prevProps) {
@@ -42,7 +42,6 @@ class Main extends React.Component {
             items.map((element) => (
               <Post
                 key={element.id}
-                delPost={this.props.delPost}
                 element={element}
                 comments={element.comments}
               />

@@ -44,8 +44,12 @@ export const dataDelete = (id) => {
       json => dispatch({
         type: DELETE_SUCCESS,
         element: json
-      })
-    );
+      })).catch(err => {
+        return dispatch({
+          type: DELETE_FAIL,
+          error: err
+        })
+      });
   }
 }
 

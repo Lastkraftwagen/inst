@@ -45,7 +45,6 @@ class App extends React.Component {
           <Main
             className="main"
             items={items}
-            delPost={dataDelete}
             showModal={this.showModal} />
           {show && <ModalAdd close={this.closeModal} apply={this.postItem} />}
         </div>
