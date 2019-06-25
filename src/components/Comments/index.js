@@ -1,6 +1,6 @@
 import React from 'react';
-import '../css/Comments.css'
-import '../css/ModalPost.css';
+import './Comments.css'
+import '../ModalPost/ModalPost.css';
 
 
 class Comments extends React.Component {

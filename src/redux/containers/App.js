@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
-import App from "../components/App"
+import App from "../../components/App"
 import { loadData, dataDelete, postItem } from "../actions";
 
 const mapStateToProps = state => ({

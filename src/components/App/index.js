@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from "./Header"
-import Main from "./Main"
-import ModalAdd from "./ModalAdd"
+import Header from "../Header"
+import Main from "../Main"
+import ModalAdd from "../ModalAdd/"
 
-import '../css/index.css';
-import '../css/App.css';
+import '../../css/index.css';
+import './App.css';
 
 class App extends React.Component {
 
@@ -12,14 +12,9 @@ class App extends React.Component {
     show: false
   }
 
-
   componentDidMount = () => {
     this.props.loadData();
   }
-
-  // deletePost = (id) => {
-  //   this.props.dataDelete(id);
-  // }
 
   postItem = (item) => {
     this.props.postItem(item);

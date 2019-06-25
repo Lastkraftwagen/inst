@@ -1,10 +1,10 @@
 import React from 'react';
-import Post from './Post'
+import Post from '../Post'
 
 
-import addpic from '../assets/img/plus.png'
+import addpic from '../../assets/img/plus.png'
 
-import '../css/Main.css'
+import './Main.css'
 
 class Main extends React.Component {
 

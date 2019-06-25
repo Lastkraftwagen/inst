@@ -1,6 +1,6 @@
 import React from 'react';
-import Comments from './Comments'
-import '../css/ModalPost.css';
+import Comments from '../Comments'
+import '../ModalPost/ModalPost.css';
 
 class ModalPost extends React.Component {
   state = {

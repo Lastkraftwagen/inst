@@ -1,8 +1,8 @@
 import React from 'react';
-import PageBottom from './PageBottom'
-import ModalPost from './ModalPost'
-import '../css/Post.css';
-import trash from '../assets/img/trash.png'
+import PageBottom from '../PageBottom'
+import ModalPost from '../ModalPost'
+import './Post.css';
+import trash from '../../assets/img/trash.png'
 class Post extends React.Component {
 
   state = {

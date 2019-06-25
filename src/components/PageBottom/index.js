@@ -1,7 +1,7 @@
 import React from 'react';
-import '../css/index.css'
-import '../css/PageBottom.css';
-import Comments from './Comments'
+import '../../css/index.css'
+import './PageBottom.css';
+import Comments from '../Comments'
 
 
 class PageBottom extends React.Component {
