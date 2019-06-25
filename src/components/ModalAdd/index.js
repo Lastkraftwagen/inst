@@ -110,13 +110,18 @@ class ModalAdd extends React.Component {
       description: this.state.descr,
       comments: []
     }
-    this.props.apply(item);
+    this.props.postItem(item);
     this.props.close();
   }
 
   render() {
-    const { userName } = this.state;
-    let { fileURL } = this.state;
+    const { 
+      userName 
+    } = this.state;
+    let { 
+      fileURL 
+    } = this.state;
+    
     let image;
     if (fileURL) {
       image = (<img className='actual_img' alt='avatar' src={fileURL} />);

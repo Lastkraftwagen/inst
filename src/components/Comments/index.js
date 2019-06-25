@@ -2,7 +2,6 @@ import React from 'react';
 import './Comments.css'
 import '../ModalPost/ModalPost.css';
 
-
 class Comments extends React.Component {
 
   state = {
@@ -16,19 +15,21 @@ class Comments extends React.Component {
   }
 
   showLessComments = () => {
-    const { comments } = this.state;
+    const {
+      comments
+    } = this.state;
+
     return (
       <div className="ul_comments">
         {[...comments].map((element) => (
           <div className="li_comment" key={`${element}_${Math.random()}`}>
             <div className="comment_holder">
-                <div className="comment_body">
-                  <h3>Commentator </h3>
-                  <div className='ddsds'>{element}</div>
-                </div>
+              <div className="comment_body">
+                <h3>Commentator </h3>
+                <div className='ddsds'>{element}</div>
+              </div>
               <div className="like_holder">
                 <div className="with_img little_heart">
-
                 </div>
               </div>
             </div>
@@ -38,7 +39,10 @@ class Comments extends React.Component {
   }
 
   showMoreComments = () => {
-    const { comments } = this.state;
+    const {
+      comments
+    } = this.state;
+
     return (
       <div className="ul_comments">
         <div
@@ -73,7 +77,10 @@ class Comments extends React.Component {
   }
 
   showScrollComments = () => {
-    const { comments } = this.state;
+    const {
+      comments
+    } = this.state;
+
     return (
       <div className='comments'>
         <div className="ul_comments">

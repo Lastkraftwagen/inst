@@ -1,8 +1,5 @@
 import React from 'react';
-import PageBottom from '../PageBottom'
-import ModalPost from '../ModalPost'
-import './Post.css';
-import trash from '../../assets/img/trash.png'
+import View from './View'
 class Post extends React.Component {
 
   state = {
@@ -41,7 +38,7 @@ class Post extends React.Component {
     }
     else if (now.getMonth() - createdAt.getMonth() > 1) {
       diff = now.getMonth() - createdAt.getMonth();
-      if(diff === 1) {this.setState({timestring: "1 месяц назад"}); return;}
+      if (diff === 1) { this.setState({ timestring: "1 месяц назад" }); return; }
       this.setState({
         timestring: diff < 5 ?
           `${diff} месяца назад` :
@@ -50,7 +47,7 @@ class Post extends React.Component {
     }
     else if (now.getDate() - createdAt.getDate() >= 1) {
       diff = now.getDate() - createdAt.getDate();
-      if(diff === 1) {this.setState({timestring: "1 день назад"}); return;}
+      if (diff === 1) { this.setState({ timestring: "1 день назад" }); return; }
 
       this.setState({
         timestring: diff < 5 ?
@@ -60,20 +57,20 @@ class Post extends React.Component {
     }
     else if (now.getHours() - createdAt.getHours() >= 1) {
       diff = now.getHours() - createdAt.getHours();
-      if(diff === 1) {this.setState({timestring: "1 час назад"}); return;}
+      if (diff === 1) { this.setState({ timestring: "1 час назад" }); return; }
 
       this.setState({
         timestring: diff < 5 ?
-        `${diff} часа назад` :
-        `${diff} часов назад`
+          `${diff} часа назад` :
+          `${diff} часов назад`
       });
     }
     else if (now.getMinutes() - createdAt.getMinutes() > 1) {
       diff = now.getMinutes() - createdAt.getMinutes();
       this.setState({
         timestring: diff < 5 ?
-        `${diff} минуты назад` :
-        `${diff} минут назад`
+          `${diff} минуты назад` :
+          `${diff} минут назад`
       });
     }
     else {
@@ -81,83 +78,26 @@ class Post extends React.Component {
     }
   }
 
-  createSendStyle = () => {
-    return (
-      this.state.comment !== '' ?
-        'send_com' : 'send_active'
-    )
-    
-  }
-
   render() {
     const {
-      imageUrl,
-      avatar,
-      userName,
-      likes,
-      description,
-      id } = this.props.element;
-
-    const {
       comments,
-      showModal
+      showModal,
+      timestring, 
+      comment
     } = this.state;
 
     return (
-      <div className="post">
-        <div className="post_topblock">
-          <div className="group_title">
-            <img 
-            src={avatar}
-            alt="avatar"></img>
-            <p>{userName} </p>
-          </div>
-          <div></div>
-          <img 
-            className='trash'
-            onClick={this.props.dataDelete.bind(this,id)}
-            src={trash}
-            alt="avatar"
-          />
-        </div>
-        <div className="content">
-          <img src={imageUrl} alt="content"></img>
-        </div>
-        <PageBottom
-          className="comments_block"
-          comments={comments}
-          likes={likes}
-          userName={userName}
-          description={description}
-          showPostModal={this.openComments} >
-        </PageBottom>
-        <div className='time'>
-          {this.state.timestring}
-        </div>
-        <div className='new_comm'>
-          <div className="new_comm_holder">
-            <input
-              className='input_comm'
-              placeholder="Добавьте комментарий..."
-              onChange={this.handleTextChange}
-            />
-            <div
-              className={this.createSendStyle()}
-              onClick={this.addNewComment}>
-              Опубликовать
-            </div>
-          </div>
-        </div>
-        {showModal &&
-          <ModalPost
-            element={this.props.element}
-            close={this.openComments}
-            comments={comments}
-            createSendStyle={this.createSendStyle}
-            addNewComment={this.addNewComment}
-            handleTextChange={this.handleTextChange}
-          ></ModalPost>}
-      </div>
+      <View
+        comments = {comments}
+        showModal = {showModal}
+        dataDelete = {this.props.dataDelete}
+        timestring = {timestring}
+        comment = {comment}
+        handleTextChange={this.handleTextChange}
+        openComments={this.openComments}
+        addNewComment ={this.addNewComment}
+        element={this.props.element}
+      />
     );
   }
 }

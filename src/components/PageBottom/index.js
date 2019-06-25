@@ -2,7 +2,7 @@ import React from 'react';
 import '../../css/index.css'
 import './PageBottom.css';
 import Comments from '../Comments'
-
+var classNames = require('classnames');
 
 class PageBottom extends React.Component {
 
@@ -26,25 +26,18 @@ class PageBottom extends React.Component {
   }
 
   addLike = () => {
-    const { liked } = this.state;
-    if (liked === false) {
-      this.setState({ likes: this.state.likes + 1 })
-    }
-    else {
-      this.setState({ likes: this.state.likes - 1 })
-    }
-    this.setState({ liked: !this.state.liked })
+    const {
+      liked
+    } = this.state;
+
+    this.setState({ likes: liked === false ? 
+      this.state.likes + 1 : this.state.likes - 1,
+      liked: !this.state.liked
+    })
   }
 
   save = () => {
     this.setState({ saved: !this.state.saved });
-  }
-
-  getHeartClass = () => {
-    return this.state.liked ? "with_img heart_red" : "with_img heart";
-  }
-  getSaveClass = () => {
-    return this.state.saved ? "with_img save_black" : "with_img save";
   }
 
   createLikePanel = () => {
@@ -53,7 +46,11 @@ class PageBottom extends React.Component {
         <span>
           <button
             onClick={this.addLike}
-            className={this.getHeartClass()}>
+            className={classNames({
+              'with_img': true,
+              'heart_red': this.state.liked,
+              'heart': !this.state.liked
+            })}>
           </button>
         </span>
         <span>
@@ -67,7 +64,11 @@ class PageBottom extends React.Component {
         </span>
         <span>
           <button
-            className={this.getSaveClass()}
+            className={classNames({
+              'with_img': true,
+              'save_black': this.state.saved,
+              'save': !this.state.saved
+            })}
             onClick={this.save}
           ></button>
         </span>

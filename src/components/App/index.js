@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from "../Header"
 import Main from "../Main"
-import ModalAdd from "../ModalAdd/"
+import ModalAdd from "../../redux/containers/ModalAdd"
 
 import '../../css/index.css';
 import './App.css';
@@ -14,10 +14,6 @@ class App extends React.Component {
 
   componentDidMount = () => {
     this.props.loadData();
-  }
-
-  postItem = (item) => {
-    this.props.postItem(item);
   }
 
   showModal = () => {
@@ -34,19 +30,22 @@ class App extends React.Component {
     } = this.state;
     const {
       items,
-      isLoaded,
-      dataDelete } = this.props;
+      isLoaded
+    } = this.props;
+
     if (isLoaded) {
       return (
         <div className="App" >
           <Header
             id='page_header'
-            className='header_cont' />
+            className='header_cont' 
+          />
           <Main
             className="main"
             items={items}
-            showModal={this.showModal} />
-          {show && <ModalAdd close={this.closeModal} apply={this.postItem} />}
+            showModal={this.showModal} 
+          />
+          {show && <ModalAdd close={this.closeModal} />}
         </div>
       );
     }

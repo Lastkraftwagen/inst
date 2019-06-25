@@ -2,7 +2,6 @@ import React from 'react';
 import '../../css/index.css'
 import './header.css';
 
-
 function Header(props) {
   return (
     <div className={props.className}>

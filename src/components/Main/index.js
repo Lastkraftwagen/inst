@@ -1,9 +1,6 @@
 import React from 'react';
 import Post from "../../redux/containers/Post"
-
-
 import addpic from '../../assets/img/plus.png'
-
 import './Main.css'
 
 class Main extends React.Component {
@@ -25,10 +22,13 @@ class Main extends React.Component {
     })
   }
 
-
   render() {
-    const { items } = this.state;
+    const { 
+      items 
+    } = this.state;
+
     this.sortItems();
+    
     return (
       <div className='main'>
         <div className='add_new'>
