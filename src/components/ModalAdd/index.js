@@ -59,7 +59,8 @@ class ModalAdd extends React.Component {
         fileURL: ""
       });
       this.myFormRef !== null ?
-        this.myFormRef.reset() : null;
+        this.myFormRef.reset() : console.log("problem with Ref");
+        ;
       return;
     }
     reader.onloadend = () => {
