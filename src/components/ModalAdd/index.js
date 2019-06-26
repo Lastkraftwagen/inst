@@ -29,12 +29,16 @@ class ModalAdd extends React.Component {
   dragOn = (e) => {
     e.preventDefault()
     e.stopPropagation()
-    this.setState({ onDrag: true });
+    this.setState({
+      onDrag: true 
+    });
   }
   dragOff = (e) => {
     e.preventDefault()
     e.stopPropagation()
-    this.setState({ onDrag: false });
+    this.setState({ 
+      onDrag: false 
+    });
   }
 
   handleClick = (event) => {
@@ -55,7 +59,7 @@ class ModalAdd extends React.Component {
         fileURL: ""
       });
       this.myFormRef !== null ?
-        this.myFormRef.reset() : console.log("myFormRef = null");
+        this.myFormRef.reset() : null;
       return;
     }
     reader.onloadend = () => {
@@ -69,7 +73,9 @@ class ModalAdd extends React.Component {
   }
 
   handleChange = (e) => {
-    this.setState({ descr: e.target.value });
+    this.setState({ 
+      descr: e.target.value 
+    });
   }
 
   saveChanges = (e) => {

@@ -1,7 +1,5 @@
 import React from 'react';
 import Moment from 'react-moment';
-
-// import View from './View'
 import PageBottom from '../PageBottom'
 import ModalPost from '../ModalPost'
 import './Post.css';
@@ -17,18 +15,24 @@ class Post extends React.Component {
     createdAt: this.props.element.createdAt,
     timestring: ''
   }
+  
   openComments = () => {
-    this.setState({ showModal: !this.state.showModal })
+    this.setState({ 
+      showModal: !this.state.showModal 
+    })
   }
 
-
   handleTextChange = (e) => {
-    this.setState({ comment: e.target.value })
+    this.setState({ 
+      comment: e.target.value 
+    })
   }
 
   addNewComment = () => {
     if (this.state.comment !== '')
-      this.setState({ comments: [...this.state.comments, this.state.comment] })  
+      this.setState({ 
+        comments: [...this.state.comments, this.state.comment] 
+      })  
   }
 
   componentDidMount = () => {

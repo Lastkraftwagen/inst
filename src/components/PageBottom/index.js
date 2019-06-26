@@ -31,7 +31,9 @@ class PageBottom extends React.Component {
   }
 
   save = () => {
-    this.setState({ saved: !this.state.saved });
+    this.setState({ 
+      saved: !this.state.saved 
+    });
   }
 
   render() {

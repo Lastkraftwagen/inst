@@ -12,22 +12,16 @@ class Main extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.items.length !== prevProps.items.length ) {
-      this.setState({items : this.props.items})
+      this.setState({
+        items : this.props.items
+      })
     }
   }
-
-  // sortItems = () => {
-  //   this.state.items.sort((a, b) => {
-  //     return new Date(b.createdAt) - new Date(a.createdAt);
-  //   })
-  // }
 
   render() {
     const { 
       items 
     } = this.state;
-
-    // this.sortItems();
     
     return (
       <div className='main'>
