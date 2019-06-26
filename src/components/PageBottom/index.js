@@ -58,7 +58,8 @@ class PageBottom extends React.Component {
       saved = {saved}
       likes = {likes}
       showPostModal = {this.props.showPostModal}
-      save = {this.props.save}
+      save = {this.save}
+      addLike = {this.addLike}
     />
     );
   }
